@@ -50,7 +50,7 @@ export const breeds: { id: Breed; label: string }[] = [
 // Listing facts (name, breed, sex, age, video flag) mirror the reference as of Oct 2026.
 // Photos are stand-in imagery — NOT the actual puppies. Origin is only evidenced for
 // "Korean Teacup" listings and Max; others default to "local" (see README).
-const img = [pup1, pup2, pup3, pup4, pup5];
+const img = [pup1, pup2, pup3, pup4, pup5, pup6, pup7, pup8, pup9];
 const raw: Omit<Puppy, "image">[] = [
   { slug: "maltipoo-max-male", name: "Max", breedLabel: "Maltipoo", breeds: ["maltipoo"], sex: "boy", age: "3 months", origin: "imported", hasVideo: true },
   { slug: "korean-teacup-maltipoo-female", name: "Korean Teacup Maltipoo", breedLabel: "Korean Teacup Maltipoo", breeds: ["maltipoo"], sex: "girl", age: "2 months", origin: "imported", hasVideo: true },
@@ -69,12 +69,21 @@ const raw: Omit<Puppy, "image">[] = [
   { slug: "korean-teacup-pomeranian-male", name: "Korean Teacup Pomeranian", breedLabel: "Korean Teacup Pomeranian", breeds: ["pomeranian"], sex: "boy", age: "2 months", origin: "imported" },
 ];
 
-const imgFor = (p: Omit<Puppy, "image">, i: number) => {
-  if (p.breeds[0] === "pomeranian") return pup2;
-  if (p.breeds[0] === "shih-tzu") return pup3;
-  if (p.breeds[0] === "cavapoo") return pup4;
-  if (p.breeds[0] === "poodle") return pup1;
-  return img[i % 2 === 0 ? 4 : 0];
+// Rotate through a small pool of photos per breed so repeated breeds look different.
+const breedPools: Record<Breed, string[]> = {
+  maltipoo: [pup5, pup1, pup6],
+  pomeranian: [pup2, pup9],
+  poodle: [pup1, pup7],
+  cavapoo: [pup4, pup8],
+  "shih-tzu": [pup3, pup6],
+};
+const breedCounts: Partial<Record<Breed, number>> = {};
+const imgFor = (p: Omit<Puppy, "image">) => {
+  const breed = p.breeds[0];
+  const pool = breedPools[breed];
+  const n = breedCounts[breed] ?? 0;
+  breedCounts[breed] = n + 1;
+  return pool[n % pool.length];
 };
 
 export const puppies: Puppy[] = raw.map((p, i) => ({ ...p, image: imgFor(p, i) }));
