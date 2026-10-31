@@ -7,6 +7,10 @@ import pup6 from "@/assets/pup-6.jpg";
 import pup7 from "@/assets/pup-7.jpg";
 import pup8 from "@/assets/pup-8.jpg";
 import pup9 from "@/assets/pup-9.jpg";
+import pup10 from "@/assets/pup-10.jpg";
+import pup11 from "@/assets/pup-11.jpg";
+import pup12 from "@/assets/pup-12.jpg";
+import pup13 from "@/assets/pup-13.jpg";
 import family1 from "@/assets/family-1.jpg";
 
 // Contact details as published on the reference site (puppy.instabizweb.com).
@@ -22,7 +26,7 @@ export function whatsappUrl(text = "Hi TeddyPups! I'd love to know more about yo
   return `https://wa.me/971541676733?text=${encodeURIComponent(text)}`;
 }
 
-export const images = { pup1, pup2, pup3, pup4, pup5, pup6, pup7, pup8, pup9, family1 };
+export const images = { pup1, pup2, pup3, pup4, pup5, pup6, pup7, pup8, pup9, pup10, pup11, pup12, pup13, family1 };
 
 export type Breed = "maltipoo" | "pomeranian" | "poodle" | "cavapoo" | "shih-tzu";
 export type Origin = "local" | "imported";
@@ -70,11 +74,11 @@ const raw: Omit<Puppy, "image">[] = [
 
 // Rotate through a small pool of photos per breed so repeated breeds look different.
 const breedPools: Record<Breed, string[]> = {
-  maltipoo: [pup5, pup1, pup6],
+  maltipoo: [pup5, pup1, pup6, pup10, pup11, pup12],
   pomeranian: [pup2, pup9],
   poodle: [pup1, pup7],
   cavapoo: [pup4, pup8],
-  "shih-tzu": [pup3, pup6],
+  "shih-tzu": [pup3, pup13],
 };
 const breedCounts: Partial<Record<Breed, number>> = {};
 const imgFor = (p: Omit<Puppy, "image">) => {
