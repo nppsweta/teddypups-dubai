@@ -1,6 +1,6 @@
 import type { Breed, Origin, Puppy } from "@/data/site";
 
-export type PuppyFilters = { origin?: Origin; breed?: Breed; sex?: "boy" | "girl" };
+export type PuppyFilters = { origin?: Origin | undefined; breed?: Breed | undefined; sex?: "boy" | "girl" | undefined };
 
 export function filterPuppies(list: Puppy[], f: PuppyFilters) {
   return list.filter(
