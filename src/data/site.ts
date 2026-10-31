@@ -50,7 +50,6 @@ export const breeds: { id: Breed; label: string }[] = [
 // Listing facts (name, breed, sex, age, video flag) mirror the reference as of Oct 2026.
 // Photos are stand-in imagery — NOT the actual puppies. Origin is only evidenced for
 // "Korean Teacup" listings and Max; others default to "local" (see README).
-const img = [pup1, pup2, pup3, pup4, pup5, pup6, pup7, pup8, pup9];
 const raw: Omit<Puppy, "image">[] = [
   { slug: "maltipoo-max-male", name: "Max", breedLabel: "Maltipoo", breeds: ["maltipoo"], sex: "boy", age: "3 months", origin: "imported", hasVideo: true },
   { slug: "korean-teacup-maltipoo-female", name: "Korean Teacup Maltipoo", breedLabel: "Korean Teacup Maltipoo", breeds: ["maltipoo"], sex: "girl", age: "2 months", origin: "imported", hasVideo: true },
@@ -86,7 +85,7 @@ const imgFor = (p: Omit<Puppy, "image">) => {
   return pool[n % pool.length];
 };
 
-export const puppies: Puppy[] = raw.map((p, i) => ({ ...p, image: imgFor(p, i) }));
+export const puppies: Puppy[] = raw.map((p) => ({ ...p, image: imgFor(p) }));
 
 export const getPuppy = (slug: string) => puppies.find((p) => p.slug === slug);
 
