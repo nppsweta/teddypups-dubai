@@ -3,6 +3,10 @@ import pup2 from "@/assets/pup-2.jpg";
 import pup3 from "@/assets/pup-3.jpg";
 import pup4 from "@/assets/pup-4.jpg";
 import pup5 from "@/assets/pup-5.jpg";
+import pup6 from "@/assets/pup-6.jpg";
+import pup7 from "@/assets/pup-7.jpg";
+import pup8 from "@/assets/pup-8.jpg";
+import pup9 from "@/assets/pup-9.jpg";
 import family1 from "@/assets/family-1.jpg";
 
 // Contact details as published on the reference site (puppy.instabizweb.com).
@@ -18,7 +22,7 @@ export function whatsappUrl(text = "Hi TeddyPups! I'd love to know more about yo
   return `https://wa.me/971541676733?text=${encodeURIComponent(text)}`;
 }
 
-export const images = { pup1, pup2, pup3, pup4, pup5, family1 };
+export const images = { pup1, pup2, pup3, pup4, pup5, pup6, pup7, pup8, pup9, family1 };
 
 export type Breed = "maltipoo" | "pomeranian" | "poodle" | "cavapoo" | "shih-tzu";
 export type Origin = "local" | "imported";
