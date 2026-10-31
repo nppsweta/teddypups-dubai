@@ -33,7 +33,7 @@ function PuppyPage() {
   const label = p.name === p.breedLabel ? `the ${p.breedLabel} ${p.sex}` : `${p.name}, the ${p.breedLabel}`;
   const facts = [
     ["Breed", p.breedLabel],
-    ["Boy or girl", p.sex[0].toUpperCase() + p.sex.slice(1)],
+    ["Boy or girl", p.sex.charAt(0).toUpperCase() + p.sex.slice(1)],
     ["Age", p.age],
     ["Where", p.origin === "imported" ? "Imported for you" : "In Dubai"],
   ];

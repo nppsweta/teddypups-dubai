@@ -78,11 +78,11 @@ const breedPools: Record<Breed, string[]> = {
 };
 const breedCounts: Partial<Record<Breed, number>> = {};
 const imgFor = (p: Omit<Puppy, "image">) => {
-  const breed = p.breeds[0];
+  const breed = p.breeds[0]!;
   const pool = breedPools[breed];
   const n = breedCounts[breed] ?? 0;
   breedCounts[breed] = n + 1;
-  return pool[n % pool.length];
+  return pool[n % pool.length]!;
 };
 
 export const puppies: Puppy[] = raw.map((p) => ({ ...p, image: imgFor(p) }));
