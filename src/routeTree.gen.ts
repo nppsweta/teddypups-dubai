@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HappyFamiliesRouteImport } from './routes/happy-families'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PuppiesIndexRouteImport } from './routes/puppies.index'
+import { Route as PuppiesSlugRouteImport } from './routes/puppies.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HappyFamiliesRoute = HappyFamiliesRouteImport.update({
+  id: '/happy-families',
+  path: '/happy-families',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PuppiesIndexRoute = PuppiesIndexRouteImport.update({
+  id: '/puppies/',
+  path: '/puppies/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PuppiesSlugRoute = PuppiesSlugRouteImport.update({
+  id: '/puppies/$slug',
+  path: '/puppies/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/happy-families': typeof HappyFamiliesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/puppies/$slug': typeof PuppiesSlugRoute
+  '/puppies/': typeof PuppiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/happy-families': typeof HappyFamiliesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/puppies/$slug': typeof PuppiesSlugRoute
+  '/puppies': typeof PuppiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/happy-families': typeof HappyFamiliesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/puppies/$slug': typeof PuppiesSlugRoute
+  '/puppies/': typeof PuppiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/faq'
+    | '/happy-families'
+    | '/how-it-works'
+    | '/puppies/$slug'
+    | '/puppies/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/faq'
+    | '/happy-families'
+    | '/how-it-works'
+    | '/puppies/$slug'
+    | '/puppies'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/faq'
+    | '/happy-families'
+    | '/how-it-works'
+    | '/puppies/$slug'
+    | '/puppies/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  HappyFamiliesRoute: typeof HappyFamiliesRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  PuppiesSlugRoute: typeof PuppiesSlugRoute
+  PuppiesIndexRoute: typeof PuppiesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/happy-families': {
+      id: '/happy-families'
+      path: '/happy-families'
+      fullPath: '/happy-families'
+      preLoaderRoute: typeof HappyFamiliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/puppies/': {
+      id: '/puppies/'
+      path: '/puppies'
+      fullPath: '/puppies/'
+      preLoaderRoute: typeof PuppiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/puppies/$slug': {
+      id: '/puppies/$slug'
+      path: '/puppies/$slug'
+      fullPath: '/puppies/$slug'
+      preLoaderRoute: typeof PuppiesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  HappyFamiliesRoute: HappyFamiliesRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  PuppiesSlugRoute: PuppiesSlugRoute,
+  PuppiesIndexRoute: PuppiesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
