@@ -18,7 +18,7 @@ export const Route = createFileRoute("/puppies/")({
   component: PuppiesPage,
 });
 
-function Chip({ active, children, to }: { active: boolean; children: string; to: z.infer<typeof search> }) {
+function Chip({ active, children, to }: { active: boolean; children: React.ReactNode; to: z.infer<typeof search> }) {
   return (
     <Link
       to="/puppies"
