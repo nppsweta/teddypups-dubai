@@ -13,9 +13,12 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Netlify deployment target. Inside the Lovable sandbox the config keeps
+  // its own Cloudflare preset for the preview; everywhere else (e.g. Netlify
+  // CI) the server build uses Nitro's "netlify" preset, emitting dist/client
+  // (static assets) + a Netlify Function for SSR.
+  nitro: { preset: "netlify" },
   vite: {
-    // Netlify deployment target: sets the Nitro preset to Netlify and emits
-    // dist/client (static assets) + dist/server (Netlify Function).
     plugins: [netlify()],
   },
 });
