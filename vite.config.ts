@@ -17,7 +17,12 @@ export default defineConfig({
   // its own Cloudflare preset for the preview; everywhere else (e.g. Netlify
   // CI) the server build uses Nitro's "netlify" preset, emitting dist/client
   // (static assets) + a Netlify Function for SSR.
-  nitro: { preset: "netlify" },
+  nitro: {
+    preset: "netlify",
+    // Keep static assets in dist/client so netlify.toml's publish dir matches
+    // the official Netlify TanStack Start instructions.
+    output: { publicDir: "dist/client" },
+  },
   vite: {
     plugins: [netlify()],
   },
